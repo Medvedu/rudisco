@@ -1,0 +1,83 @@
+#----------------------------------------------------------------------------
+# Ignore these files when commiting to a git repository
+#
+# The original version of this file is found here:
+# https://github.com/RailsApps/rails3-application-templates/raw/master/files/gitignore.txt
+#
+# Corrections? Improvements? Create a GitHub issue:
+# http://github.com/RailsApps/rails3-application-templates/issues
+#----------------------------------------------------------------------------
+
+# bundler state
+/.bundle
+/vendor/bundle/
+
+db/*.sqlite3
+db/schema.rb
+/log/*
+tmp/*
+
+*~
+#/config/unicorn.rb
+#Gemfile.lock
+#/Gemfile.lock
+# various artifacts
+.rvmrc
+**.war
+*.rbc
+*.sassc
+.idea/
+.rspec
+.redcar/
+.redis/
+dump.rdb
+.sass-cache
+#/config/config.yml
+/config/redis.yml
+config/redis.yml
+/coverage.data
+/coverage/
+/db/*.javadb/
+/db/*.sqlite3-journal
+/doc/api/
+/doc/app/
+/doc/features.html
+/doc/specs.html
+/public/cache
+/public/stylesheets/compiled
+/public/system
+/public/ckeditor_assets
+/public/uploads
+/cache
+/capybara*
+/capybara-*.html
+/gems
+/rerun.txt
+/spec/requests
+/spec/routing
+/spec/views
+/specifications
+/cached_pages/*
+
+# scm revert files
+**.orig
+
+# Mac finder artifacts
+.DS_Store
+
+# Netbeans project directory
+/nbproject/
+
+# Textmate project files
+/*.tmproj
+
+# Sublime project files
+*.sublime-project
+*.sublime-workspace
+
+# vim artifacts
+**.swp
+
+Guardfile
+
+vendor/cache/
