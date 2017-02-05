@@ -78,8 +78,9 @@ module Rudisco
 
     def git_clone(params = {})
       path = params[:path] || ENV['HOME']
+      path = File.join(path, gem.name)
 
-      Helpers::git_clone gem.gem_url, path
+      Helpers::git_clone gem.source_code_url, path
     end
 
     private

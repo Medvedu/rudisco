@@ -51,9 +51,11 @@ Table _gems_ consist of next columns: _name, description, authors, version, lice
   
   sample = Rudisco::Gem.exclude(source_code_url: '').first
   sample.action(:open_sources)
-        .action(:download, path: path_to_load)
+        .action(:git_clone, path: path_to_load)
+        
+  sample2 = Rudisco::Gem.limit(2)
+  sample2.action(:download, path: path_to_load)
 ```
-
 ### Update database
 
 #### With verbose

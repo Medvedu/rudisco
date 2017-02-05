@@ -61,8 +61,14 @@ module Rudisco
     # Provides external actions for specified cortege.
     #
     # @example
+    #   path_to_load = File.join(__dir__, '..', 'tmp')
+    #
     #   sample = Rudisco::Gem.exclude(source_code_url: '').first
-    #   sample.action :open_sources # opens code sources url in a browser.
+    #   sample.action(:open_sources)
+    #         .action(:git_clone, path: path_to_load)
+    #
+    #   sample2 = Rudisco::Gem.limit(2)
+    #   sample2.action(:download, path: path_to_load)
     #
     # @param [Symbol] command
     #   Expecting +command+ values:
