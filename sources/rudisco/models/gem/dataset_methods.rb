@@ -6,7 +6,7 @@ module Sequel::Plugins::GemExtendedDataset
     #
     # @return [Gem::Dataset]
 
-    def action(command, params)
+    def action(command, params = {})
       each { |cortege| cortege.action command, params }
 
       return self
