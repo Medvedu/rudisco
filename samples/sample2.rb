@@ -1,15 +1,13 @@
 # encoding: utf-8
+# frozen_string_literal: true
+require_relative '../sources/rudisco'
 
-require '../lib/rubygems.rb'
+phrase = 'rails'
+gems = Rudisco::Gem.find_phrase(phrase)
+                   .select(:name, :description)
 
-RubyGem::Gem.connect
-
-popular = RubyGem::Gem.where('downloads_count_all > 4000000 ')
-                      .order('downloads_count_last DESC')
-                      .limit(100)
-
-popular.each do |g|
-  puts "Gem name:     #{g.name}"
-  puts "Description:  #{g.description}"
-  puts "Authors:      #{g.authors}", ''
+gems.each do |record|
+  puts record[:name]
+  puts record[:description]
+  puts
 end

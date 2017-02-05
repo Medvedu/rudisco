@@ -1,115 +1,65 @@
-# RubyGems discover
+# Rudisco
 
-## About
+## Description
+ 
+Gems local database (based on [Rubygems](https://rubygems.org)). Includes information about ~ 126000 gems.
 
-Collect&Discover tool for RubyGems. 
-
-## Samples
-
-### discover popular gems
-
-```ruby
-require '../lib/rubygems.rb'
-
-RubyGem::Gem.connect
-
-hot_with_git_sourse = RubyGem::Gem.where('downloads_count_all < 2000000 ')
-                                  .where('downloads_count_last > 500000' )
-                                  .where('sourse_code_uri is not NULL')
-                                  .limit(100)
-
-hot_with_git_sourse.each do |g|
-  puts "Gem name:     #{g.name}"
-  puts "Description:  #{g.description}"
-  puts "Sourse link:  #{g.sourse_code_uri}"
-  puts "Authors:      #{g.authors}", ""
-end
-
-```
-
-#### or
-
-```ruby
-require '../lib/rubygems.rb'
-
-RubyGem::Gem.connect
-
-popular = RubyGem::Gem.where('downloads_count_all > 4000000 ')
-                      .order('downloads_count_last DESC')
-                      .limit(100)
-
-popular.each do |g|
-  puts "Gem name:     #{g.name}"
-  puts "Description:  #{g.description}"
-  puts "Authors:      #{g.authors}", ''
-end
-```
-
-### search
-
-```ruby
-require '../lib/rubygems.rb'
-
-RubyGem::Gem.connect(verbose: false)
-
-count = RubyGem::Gem.search('mit', search: [:license]).count
-puts "Gems count published with MIT license: #{count}", ''
-
-puts "Gems with 'CRC32' keyword in a name or description."
-RubyGem::Gem.search('CRC32', search: [:name, :description]).each do |g|
-  puts "Gem name:     #{g.name}"
-  puts "Description:  #{g.description}"
-  puts "Authors:      #{g.authors}", ''
-end
-
-```
-
-### update by rake (+cron?)
-
-```ruby
-#!/usr/bin/env ruby
-# encoding: utf-8
-
-require 'rubygems'
-require 'rake'
-
-# TODO: change for gem path, when it will be published to rubygems…
-require "#{__dir__}/../lib/rubygems.rb"
-
-desc 'Update rubygems database. Required external connection to '       \
-     'rubygems.org. Highly recommended for launch as cron since it is ' \
-     'a long-term task.'
-
-task :update_rubygems_db do
-  RubyGem::Gem.connect(verbose: true, skip_headers_download: false)
-  RubyGem::Gem.update(manager: { ThreadsCount: 20 })
-end
-
-```
-
-### download
-
-… not implemended …
+Table _gems_ consist of next columns: _name, description, authors, version, license, sha, source_code_url_ and more. Full table structure described in gem.rb file.
 
 ## Installation
 
-1. Make sure you have installed postgresql database and bin/gem tool.
+```shell
+  $ gem install rudisco
+```
 
-### dependencies
+## Usage
 
-> /bin/gem 
-> /bin/createuser
-> /bin/createdb
+### Database usage example
 
-2. Git clone this project
-3. cd to project
-4. write into your console 
+```ruby
+  require 'rudisco'
+  
+  gems = Rudisco::Gem # Sequel::Model
+  
+  top = gems.where{ total_downloads > 50000000 }
+            .select(:name, :description, :source_code_url)
+  
+  top.each do |record|
+    puts record[:name]
+    puts record[:description]
+    puts record[:source_code_url] if record[:source_code_url]
+    puts
+  end
+```
 
-> $ rubygems rake update_rubygems_db
+### Database update
 
-5. Wait. It will be long. Sorry, but there is nothing to do with rubygems cooldown&response time. (If you know how to descrease cooldown or have any other tip, feel free to contact)
+With verbose:
 
-License
+```shell
+  $ cd %gemdir
+  $ bundle exec rake Rudisco:update
+```
+
+Silent:
+
+```ruby
+  require 'rudisco'
+  
+  Rudisco::Gem.deep_scanning
+```
+
+## Todo
+
+Integrate with Github for better search results.
+
+## Dependencies
+
+  * Ruby 2.1.0 or higher
+  * sqlite3 ~> 1.3.13
+  * sequel  ~> 4.42.1
+
+## License
 ----
 
-MIT
+Released under the MIT License. See the [LICENSE](./LICENSE) file for further details.

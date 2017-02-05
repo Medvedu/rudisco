@@ -1,15 +1,9 @@
 # encoding: utf-8
+# frozen_string_literal: true
+require_relative '../sources/rudisco'
 
-require '../lib/rubygems.rb'
+path_to_load = File.join(__dir__, '..', 'tmp')
 
-RubyGem::Gem.connect(verbose: false)
-
-count = RubyGem::Gem.search('mit', search: [:license]).count
-puts "Gems count published with MIT license: #{count}", ''
-
-puts "Gems with 'CRC32' keyword in a name or description."
-RubyGem::Gem.search('CRC32', search: [:name, :description]).each do |g|
-  puts "Gem name:     #{g.name}"
-  puts "Description:  #{g.description}"
-  puts "Authors:      #{g.authors}", ''
-end
+sample = Rudisco::Gem.exclude(source_code_url: '').first
+sample.action(:open_sources)
+      .action(:download, path: path_to_load)
