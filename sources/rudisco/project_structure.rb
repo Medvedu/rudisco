@@ -10,6 +10,7 @@ module Rudisco
 
   # === Dependencies from rubygems.org
 
+  require 'sqlite3'
   require 'sequel'
 
   # === Project structure
