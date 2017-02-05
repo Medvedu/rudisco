@@ -1,4 +1,4 @@
-# Rudisco
+# Rudisco [![Build Status](https://travis-ci.org/Medvedu/rudisco.svg?branch=master)](https://travis-ci.org/Medvedu/rudisco)
 
 ## Description
  
@@ -17,8 +17,6 @@ Table _gems_ consist of next columns: _name, description, authors, version, lice
 ### Database usage example
 
 ```ruby
-  require 'rudisco'
-  
   gems = Rudisco::Gem # Sequel::Model
   
   top = gems.where{ total_downloads > 50000000 }
@@ -32,16 +30,42 @@ Table _gems_ consist of next columns: _name, description, authors, version, lice
   end
 ```
 
-### Database update
+### Simple search gems by selected phrase
 
-With verbose:
+```ruby
+  phrase = 'rails'
+  gems = Rudisco::Gem.find_phrase(phrase)
+                     .select(:name, :description)
+  
+  gems.each do |record|
+    puts record[:name]
+    puts record[:description]
+    puts
+  end
+```
+
+### Open documentation and download gems
+
+```ruby
+  path_to_load = File.join(__dir__, '..', 'tmp')
+  
+  sample = Rudisco::Gem.exclude(source_code_url: '').first
+  sample.action(:open_sources)
+        .action(:git_clone, path: path_to_load)
+        
+  sample2 = Rudisco::Gem.limit(2)
+  sample2.action(:download, path: path_to_load)
+```
+### Update database
+
+#### With verbose
 
 ```shell
   $ cd %gemdir
   $ bundle exec rake Rudisco:update
 ```
 
-Silent:
+#### Silent
 
 ```ruby
   require 'rudisco'
