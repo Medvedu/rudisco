@@ -5,9 +5,18 @@ module CLI
   class Application < Thor
 
     desc "find PHRASE", "Searches phrase in gem name or description"
+
+    method_option :limit,
+                  :aliases  => "-l",
+                  :type     => :numeric,
+                  :default  => 75,
+                  :desc     => "Limits search result. By default it shows 75 most popular gems",
+                  :banner   => "Search result limit (max: 75 gems by default)"
+
     def find(phrase)
       records = Gem.find_phrase(phrase)
-                   .order_by(:total_downloads)
+                   .order_by(Sequel.desc(:total_downloads))
+                   .limit options[:limit]
 
       Presentation::Find.new(records: records).show
     end
