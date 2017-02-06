@@ -73,6 +73,13 @@ Table _gems_ consist of next columns: _name, description, authors, version, lice
   Rudisco::Gem.deep_scanning
 ```
 
+## CLI
+
+Most commands available throw CLI, enjoy!
+
+![Alt text](./docs/images/find.png)
+![Alt text](./docs/images/show.png)
+
 ## Todo
 
 Integrate with Github for better search results.
@@ -86,4 +93,4 @@ Integrate with Github for better search results.
 ## License
 ----
 
-Released under the MIT License. See the [LICENSE](./LICENSE) file for further details.
+Released under the MIT License. See the [LICENSE](./license.md) file for further details.

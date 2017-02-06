@@ -19,6 +19,8 @@ module CLI
       Presentation::Find.new(records: records).show
     end
 
+    # ----------------------------------------------------
+
     desc "show GEM_NAME", "Shows detailed information about single gem"
     def show(gem_name)
       record = Gem.where(name: gem_name)
@@ -27,9 +29,26 @@ module CLI
       Presentation::Show.new(record: record).show
     end
 
-    # desc "download GEM_NAME", "Downloads a gem"
-    # def download(gem_name)
-    # end
+    # ----------------------------------------------------
+
+    desc "download GEM_NAME", "Downloads a gem"
+    method_option :path,
+              :aliases  => "-p",
+              :type     => :string,
+              :default  => nil,
+              :desc     => "Path where gem gonna be saved"
+
+    def download(gem_name)
+      path ||= options[:path] || ENV['HOME']
+      record = Gem.where(name: gem_name).first
+      record.action :download, path: path
+
+      Presentation::Download.new(success: true, path: path).show
+    rescue NoMethodError, Rudisco::Error => exception
+      Presentation::Download.new(success: false, exception: exception).show
+    end
+
+    # ----------------------------------------------------
 
     # desc "git_clone GEM_NAME", "Clones sources from git"
     # def git_clone(gem_name)

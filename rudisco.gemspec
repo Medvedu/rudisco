@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.summary       = 'Rubygems sqlite3 database (includes information about ~ 126000 gems). Table gems consist of next columns: name, description, authors, version, license, sha, source_code_url and more.'
   s.homepage      = 'https://github.com/Medvedu/rudisco'
 
-  s.files         = Dir['readme.md', 'license.md', 'Gemfile', 'Rakefile', 'bin/**/*', 'sources/**/*', 'rakefiles/**/*']
+  s.files         = Dir['readme.md', 'license.md', 'Gemfile', 'Rakefile', 'bin/**/*', 'sources/**/*', 'rakefiles/**/*', 'docs/**/*']
   s.files.reject! { |file_name| file_name.include? "development" }
 
   s.bindir = 'bin'
