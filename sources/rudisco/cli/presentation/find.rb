@@ -3,16 +3,18 @@
 module Rudisco
 module CLI
   class Presentation::Find < Presentation
-    def initialize(**params)
+    def initialize(**params) # no-doc
       @records = params[:records]
     end
 
     def show # no-doc
-      if records.count.zero?
-        nothing_was_found
-      else
-        show_results
-      end
+      report message: '', complete: '' do
+        if records.count.zero?
+          nothing_was_found
+        else
+          show_results
+        end
+      end # report
     end
 
     private
@@ -22,7 +24,6 @@ module CLI
     attr_reader :records
 
     def nothing_was_found # no-doc
-      aligned ""
       header title: 'Rudisco search results',
              width: 80, align: 'center',
              bold: true, timestamp: true
@@ -32,31 +33,28 @@ module CLI
     end
 
     def show_results # no-doc
-      report message: '', complete: '' do
+      header title: 'Rudisco search results',
+             width: 80, align: 'center',
+             bold: true, timestamp: true
 
-        header title: 'Rudisco search results',
-               width: 80, align: 'center',
-               bold: true, timestamp: true
-
-        table(border: true) do
+      table(border: true) do
+        row do
+          column '№',            width: 3,  align: 'center'
+          column 'Name',         width: 17, align: 'center'
+          column 'Git',          width: 3,  align: 'center'
+          column 'Description',  width: 46, align: 'center'
+          column 'DW (total)',   width: 10, align: 'center'
+        end
+        records.each_with_index do |rec, index|
           row do
-            column '№',            width: 3,  align: 'center'
-            column 'Name',         width: 17, align: 'center'
-            column 'Git',          width: 3,  align: 'center'
-            column 'Description',  width: 46, align: 'center'
-            column 'DW (total)',   width: 10, align: 'center'
+            column index
+            column rec.name
+            column source_code_helper(rec.source_code_url)
+            column clear_desc(rec.description)
+            column rec.total_downloads
           end
-          records.each_with_index do |rec, index|
-            row do
-              column index
-              column rec.name
-              column source_code_helper(rec.source_code_url)
-              column clear_desc(rec.description)
-              column rec.total_downloads
-            end
-          end
-        end # table
-      end
+        end
+      end # table
     end
 
     ##
@@ -77,7 +75,7 @@ module CLI
       return tmp
     end
 
-    def source_code_helper(source_code_url)
+    def source_code_helper(source_code_url) # no-doc
       if source_code_url.nil? || source_code_url.empty?
         return "-"
       else

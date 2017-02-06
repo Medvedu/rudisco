@@ -5,7 +5,7 @@ module CLI
   class Presentation # no-doc
     include CommandLineReporter
 
-    def initialize # no-doc
+    def initialize(**params) # no-doc
       raise NotImplementedError, "Abstract class called!"
     end
 

@@ -3,9 +3,7 @@
 module Rudisco
 module CLI
   class Application < Thor
-
     desc "find PHRASE", "Searches phrase in gem name or description"
-
     method_option :limit,
                   :aliases  => "-l",
                   :type     => :numeric,
@@ -21,30 +19,46 @@ module CLI
       Presentation::Find.new(records: records).show
     end
 
-    desc "update", "Database update. Can be long-term procedure."
-    def update
-      puts "Update started!"
+    desc "show GEM_NAME", "Shows detailed information about single gem"
+    def show(gem_name)
+      record = Gem.where(name: gem_name)
+                  .first
 
-      updated = 0
-      Gem.deep_scanning do |updated_count|
-        updated += updated_count
-        print "Updated: #{updated}"
-        $stdout.flush
-      end
-
-      puts "\nUpdate finished! #{updated} record(s) was updated!"
+      Presentation::Show.new(record: record).show
     end
 
-    desc "statistic", "Shows statistic"
-    def statistic
-      Gem.surface_scanning
+    # desc "download GEM_NAME", "Downloads a gem"
+    # def download(gem_name)
+    # end
 
-      gem_count = Gem.count
-      outdated_count = Gem.where { need_update }.count
+    # desc "git_clone GEM_NAME", "Clones sources from git"
+    # def git_clone(gem_name)
+    # end
 
-      Presentation::Statistic.new(
-        gem_count: gem_count, outdated_count: outdated_count).show
-    end
+    # desc "update", "Database update. Can be long-term procedure."
+    # def update
+    #   puts "Update started!"
+    #
+    #   updated = 0
+    #   Gem.deep_scanning do |updated_count|
+    #     updated += updated_count
+    #     print "Updated: #{updated}"
+    #     $stdout.flush
+    #   end
+    #
+    #   puts "\nUpdate finished! #{updated} record(s) was updated!"
+    # end
+    #
+    # desc "statistic", "Shows statistic"
+    # def statistic
+    #   Gem.surface_scanning
+    #
+    #   gem_count = Gem.count
+    #   outdated_count = Gem.where { need_update }.count
+    #
+    #   Presentation::Statistic.new(
+    #     gem_count: gem_count, outdated_count: outdated_count).show
+    # end
   end # class Application
 end # module CLI
 end # module Rudisco

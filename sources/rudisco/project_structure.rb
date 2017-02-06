@@ -48,7 +48,7 @@ module Rudisco
        files: %w(presentation)
 
   load folder: 'cli/presentation',
-       files: %w(find)
+       files: %w(find show statistic update)
 
   load files: %w(cli)
 end # module Rudisco
