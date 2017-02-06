@@ -58,14 +58,14 @@ Table _gems_ consist of next columns: _name, description, authors, version, lice
 ```
 ### Update database
 
-#### With verbose
+#### Throw CLI
 
 ```shell
-  $ cd %gemdir
-  $ bundle exec rake Rudisco:update
+  $ gem install rudisco
+  $ rudisco update
 ```
 
-#### Silent
+#### By #deep_scanning call
 
 ```ruby
   require 'rudisco'

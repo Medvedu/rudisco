@@ -72,6 +72,7 @@ module Rudisco
     #
     # @param [Symbol] command
     #   Expecting +command+ values:
+    #     :update             @see GemActions#update
     #     :open_documentation @see GemActions#open_documentation
     #     :open_bug_tracker   @see GemActions#open_bug_tracker
     #     :open_sources       @see GemActions#open_sources
