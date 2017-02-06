@@ -23,8 +23,8 @@ module Rudisco
   # 	`mailing_list_url`	Text,
   # 	`bug_tracker_url`	  Text,
   #
-  # 	`total_downloads`	  numeric,
-  # 	`version_downloads`	numeric,
+  # 	`total_downloads`	  Integer,
+  # 	`version_downloads`	Integer,
   #
   # 	`need_update`	Boolean DEFAULT (1)
   # );

@@ -51,8 +51,8 @@ module CLI
               column index
               column rec.name
               column rec.description
-              column rec.total_downloads.to_i
-              column rec.version_downloads.to_i
+              column rec.total_downloads
+              column rec.version_downloads
             end
           end
         end # table
