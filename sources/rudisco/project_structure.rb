@@ -12,6 +12,7 @@ module Rudisco
 
   require 'sqlite3'
   require 'sequel'
+  require 'thor'
 
   # === Project structure
 
@@ -37,4 +38,6 @@ module Rudisco
 
   load folder: 'models',
        files: %w(gem)
+
+  load files: %w(cli)
 end # module Rudisco
