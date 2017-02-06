@@ -1,9 +1,15 @@
 # encoding: utf-8
 # frozen_string_literal: true
 module Rudisco
-  class CLI < Thor
+module CLI
+  class Application < Thor
+
     desc "find PHRASE", "Searches phrase in gem name or description"
     def find(phrase)
+      records = Gem.find_phrase(phrase)
+                   .order_by(:total_downloads)
+
+      Presentation::Find.new(records: records).show
     end
 
     desc "update", "Database update. Can be long-term procedure."
@@ -22,16 +28,14 @@ module Rudisco
 
     desc "statistic", "Shows statistic"
     def statistic
-      gem_count = Gem.count
-
-      # FIND OUTDATED RECORDS
       Gem.surface_scanning
+
+      gem_count = Gem.count
       outdated_count = Gem.where { need_update }.count
 
-      ## PRINT REPORT
-      puts "Gathering statistic...\n"
-      puts "Need update for #{outdated_count} records."
-      puts "Records in database: #{gem_count}"
+      Presentation::Statistic.new(
+        gem_count: gem_count, outdated_count: outdated_count).show
     end
-  end # class CLI
+  end # class Application
+end # module CLI
 end # module Rudisco

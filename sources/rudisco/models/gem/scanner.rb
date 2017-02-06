@@ -31,7 +31,7 @@ module Rudisco
     end
 
     ##
-    # Updates corteges(s).
+    # Updates cortege(s).
     #
     # Used to get latest information about gem(s) total downloads
     # count and so on.

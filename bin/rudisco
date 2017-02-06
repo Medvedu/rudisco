@@ -2,4 +2,4 @@
 # encoding: utf-8
 require File.join(__dir__, '..', 'sources', 'rudisco')
 
-Rudisco::CLI.start ARGV
+Rudisco::CLI::Application.start ARGV
