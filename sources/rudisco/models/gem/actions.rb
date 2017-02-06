@@ -30,6 +30,20 @@ module Rudisco
       end
     end
 
+    # ----------------------------------------------------
+    # ------------- External actions methods -------------
+    # ----------------------------------------------------
+
+    ##
+    # Updates gems.
+    #
+    # Used to get latest information about gem. This need because some
+    # db.attributes getting update even when gem version not changed.
+
+    def update(params = {})
+      Gem.corteges_scanning gem
+    end
+
     ##
     # Opens in browser documentation page
 

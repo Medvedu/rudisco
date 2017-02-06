@@ -31,10 +31,10 @@ namespace 'development' do
       Text :mailing_list_url
       Text :bug_tracker_url
 
-      Numeric :total_downloads
-      Numeric :version_downloads
+      Integer :total_downloads
+      Integer :version_downloads
 
-      Boolean :need_update, :default => true
+      Boolean :need_update, default: true
     end
   end # task 'rebuild'
 end # namespace 'development'

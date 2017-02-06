@@ -23,8 +23,8 @@ module Rudisco
   # 	`mailing_list_url`	Text,
   # 	`bug_tracker_url`	  Text,
   #
-  # 	`total_downloads`	  numeric,
-  # 	`version_downloads`	numeric,
+  # 	`total_downloads`	  Integer,
+  # 	`version_downloads`	Integer,
   #
   # 	`need_update`	Boolean DEFAULT (1)
   # );
@@ -72,6 +72,7 @@ module Rudisco
     #
     # @param [Symbol] command
     #   Expecting +command+ values:
+    #     :update             @see GemActions#update
     #     :open_documentation @see GemActions#open_documentation
     #     :open_bug_tracker   @see GemActions#open_bug_tracker
     #     :open_sources       @see GemActions#open_sources

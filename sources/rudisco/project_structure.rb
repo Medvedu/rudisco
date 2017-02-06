@@ -12,6 +12,8 @@ module Rudisco
 
   require 'sqlite3'
   require 'sequel'
+  require 'thor'
+  require 'command_line_reporter'
 
   # === Project structure
 
@@ -30,6 +32,8 @@ module Rudisco
   end
   private_class_method :load
 
+  # === Core
+
   load files: %w(helpers sqlite)
 
   load folder: 'models/gem',
@@ -37,4 +41,14 @@ module Rudisco
 
   load folder: 'models',
        files: %w(gem)
+
+  # === Command-Line-Interface
+
+  load folder: 'cli',
+       files: %w(presentation)
+
+  load folder: 'cli/presentation',
+       files: %w(find show statistic update download git_clone)
+
+  load files: %w(cli)
 end # module Rudisco

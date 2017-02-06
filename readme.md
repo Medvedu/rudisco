@@ -58,20 +58,27 @@ Table _gems_ consist of next columns: _name, description, authors, version, lice
 ```
 ### Update database
 
-#### With verbose
+#### Throw CLI
 
 ```shell
-  $ cd %gemdir
-  $ bundle exec rake Rudisco:update
+  $ gem install rudisco
+  $ rudisco update
 ```
 
-#### Silent
+#### By #deep_scanning call
 
 ```ruby
   require 'rudisco'
   
   Rudisco::Gem.deep_scanning
 ```
+
+## CLI
+
+Most commands available throw CLI, enjoy!
+
+![Alt text](./docs/images/find.png)
+![Alt text](./docs/images/show.png)
 
 ## Todo
 
@@ -86,4 +93,4 @@ Integrate with Github for better search results.
 ## License
 ----
 
-Released under the MIT License. See the [LICENSE](./LICENSE) file for further details.
+Released under the MIT License. See the [LICENSE](./license.md) file for further details.

@@ -30,6 +30,18 @@ module Rudisco
       _deep_scanning &callback
     end
 
+    ##
+    # Updates cortege(s).
+    #
+    # Used to get latest information about gem(s) total downloads
+    # count and so on.
+    #
+    # @param [Rudisco::Gem, Array<Rudisco::Gem>] corteges
+
+    def corteges_scanning(corteges)
+      rubygems_manage_corteges Array(corteges)
+    end
+
     private
 
     def _surface_scanning # no-doc
