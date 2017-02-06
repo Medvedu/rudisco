@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.files.reject! { |file_name| file_name.include? "development" }
 
   s.bindir = 'bin'
-  s.executables << 'rudisco.rb'
+  s.executables << 'rudisco'
 
   s.test_files = Dir['spec/**/*.rb']
   s.require_paths = ['sources']
