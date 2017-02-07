@@ -75,14 +75,23 @@ Table _gems_ consist of next columns: _name, description, authors, version, lice
 
 ## CLI
 
-Most commands available throw CLI, enjoy!
+![Alt text](./docs/images/img.jpg)
 
-![Alt text](./docs/images/find.png)
-![Alt text](./docs/images/show.png)
+### commands list
+
+```shell
+  $ rudisco clone GEM_NAME     # Clones gem sources from git
+  $ rudisco download GEM_NAME  # Downloads a gem
+  $ rudisco find PHRASE        # Searches phrase in gem name or description
+  $ rudisco show GEM_NAME      # Shows detailed information about single gem
+  $ rudisco update             # Updates database
+```
 
 ## Todo
 
 Integrate with Github for better search results.
+Add CLI open (opens any url associated with gem in browser) & CLI statistic (database&program statistic) commands.
+Tests coverage.
 
 ## Dependencies
 

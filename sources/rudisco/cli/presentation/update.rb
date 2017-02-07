@@ -6,7 +6,10 @@ module CLI
     def initialize(**params)
     end
 
-    def show # no-doc
+    def show;
+    end
+
+    def callback(**params) # no-doc
     end
   end # class Presentation::Update
 end # module CLI

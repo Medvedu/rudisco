@@ -48,7 +48,7 @@ module Rudisco
        files: %w(presentation)
 
   load folder: 'cli/presentation',
-       files: %w(find show statistic update download git_clone)
+       files: %w(find show update download git_clone)
 
   load files: %w(cli/cli) # cli/routes
 end # module Rudisco

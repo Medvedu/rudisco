@@ -19,7 +19,7 @@ module CLI
       Presentation::Find.new(records: records).show
     end
 
-    # ----------------------------------------------------
+
 
     desc "show GEM_NAME", "Shows detailed information about single gem"
     def show(gem_name)
@@ -29,7 +29,7 @@ module CLI
       Presentation::Show.new(record: record).show
     end
 
-    # ----------------------------------------------------
+
 
     desc "download GEM_NAME", "Downloads a gem"
     method_option :path,
@@ -54,7 +54,7 @@ module CLI
       Presentation::Download.new(success: false, exception: exception).show
     end
 
-    # ----------------------------------------------------
+
 
     desc "clone GEM_NAME", "Clones gem sources from git"
     method_option :path,
@@ -76,38 +76,29 @@ module CLI
       end
 
     rescue Rudisco::Helpers::NotAUrl
-      exception = GemWithoutGitSources.new(gem_name)
+      exception = GemWithoutGitSources.new gem_name
       Presentation::GitClone.new(success: false, exception: exception).show
 
     rescue Rudisco::Error => exception
       Presentation::GitClone.new(success: false, exception: exception).show
     end
 
-    # ----------------------------------------------------
 
-    # desc "update", "Database update. Can be long-term procedure."
-    # def update
-    #   puts "Update started!"
-    #
-    #   updated = 0
-    #   Gem.deep_scanning do |updated_count|
-    #     updated += updated_count
-    #     print "Updated: #{updated}"
-    #     $stdout.flush
-    #   end
-    #
-    #   puts "\nUpdate finished! #{updated} record(s) was updated!"
-    # end
-    #
-    # desc "statistic", "Shows statistic"
-    # def statistic
-    #   Gem.surface_scanning
-    #
-    #   gem_count = Gem.count
-    #   outdated_count = Gem.where { need_update }.count
-    #
-    #   Presentation::Statistic.new(
-    #     gem_count: gem_count, outdated_count: outdated_count).show
+
+    desc "update", "Updates database"
+    def update
+      presentation = Presentation::Update.new
+      presentation.show
+
+      Gem.deep_scanning do |updated|
+        presentation.callback(updated: updated)
+      end
+    end
+
+
+
+    # desc "open", ""
+    # def open
     # end
 
     class GemNotFound < Error # no-doc
