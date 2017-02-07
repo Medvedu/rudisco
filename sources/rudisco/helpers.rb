@@ -36,7 +36,7 @@ module Rudisco
     #   Raised when +path+ is not a path to directory.
 
     def self.download(url, path)
-      raise NotAUrl, url unless url.is_a?(String) || !url.empty?
+      raise NotAUrl, url unless url.is_a?(String) && !url.empty?
       raise DirNotExists, path unless Dir.exists? path
 
       system "wget -P #{path} #{url} > /dev/null 2>&1"
@@ -56,7 +56,7 @@ module Rudisco
     #   where it should be saved already exists.
 
     def self.git_clone(url, path)
-      raise NotAUrl, url unless url.is_a?(String) || !url.empty?
+      raise NotAUrl, url unless url.is_a?(String) && !url.empty?
       raise DirShouldNotExists, path if Dir.exists? path
 
       system "git clone #{url} #{path} > /dev/null 2>&1"

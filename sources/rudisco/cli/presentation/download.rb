@@ -3,13 +3,12 @@
 module Rudisco
 module CLI
   class Presentation::Download < Presentation
-
     # @param [HASH] params
     # @option params  [String, NilClass] :path
     # @option params [TrueClass, FalseClass] :success
     # @option params [Exception, NilClass] :exception
 
-    def initialize(**params) # no-doc
+    def initialize(**params)
       @success   = params[:success]
       @path      = params[:path]
       @exception = params[:exception]
@@ -18,7 +17,7 @@ module CLI
     def show # no-doc
       report message: '', complete: '' do
         if success
-          show_download_message
+          download_done
         else
           download_failed
         end
@@ -27,7 +26,7 @@ module CLI
 
     private
 
-    def show_download_message # no-doc
+    def download_done # no-doc
       header title: 'Download success', width: 80, align: 'center', bold: true
 
       aligned "Gem was downloaded to #{path}", bold: true, width: 80,

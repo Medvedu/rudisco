@@ -56,9 +56,34 @@ module CLI
 
     # ----------------------------------------------------
 
-    # desc "git_clone GEM_NAME", "Clones sources from git"
-    # def git_clone(gem_name)
-    # end
+    desc "clone GEM_NAME", "Clones gem sources from git"
+    method_option :path,
+              :aliases  => "-p",
+              :type     => :string,
+              :default  => nil,
+              :desc     => "Path where gem gonna be saved (default: ENV['HOME'])"
+
+    def clone(gem_name)
+      record = Gem.where(name: gem_name).first
+
+      if record
+        path = File.expand_path(options[:path] || ENV['HOME'])
+
+        record.action :git_clone, path: path
+        Presentation::GitClone.new(success: true, path: path).show
+      else
+        raise GemNotFound, gem_name
+      end
+
+    rescue Rudisco::Helpers::NotAUrl
+      exception = GemWithoutGitSources.new(gem_name)
+      Presentation::GitClone.new(success: false, exception: exception).show
+
+    rescue Rudisco::Error => exception
+      Presentation::GitClone.new(success: false, exception: exception).show
+    end
+
+    # ----------------------------------------------------
 
     # desc "update", "Database update. Can be long-term procedure."
     # def update
@@ -87,6 +112,9 @@ module CLI
 
     class GemNotFound < Error # no-doc
       def initialize(name); super "Gem '#{name}' not found!" end; end
+
+    class GemWithoutGitSources < Error # no-doc
+      def initialize(name); super "Gem '#{name}' without git sources!" end; end
   end # class Application
 end # module CLI
 end # module Rudisco
