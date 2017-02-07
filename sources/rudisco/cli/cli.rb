@@ -9,7 +9,7 @@ module CLI
                   :type     => :numeric,
                   :default  => 75,
                   :desc     => "Limits search result. By default it shows 75 most popular gems",
-                  :banner   => "Search result limit (max: 75 gems by default)"
+                  :banner   => "Search result limit (75 gems by default)"
 
     def find(phrase)
       records = Gem.find_phrase(phrase)
@@ -33,18 +33,24 @@ module CLI
 
     desc "download GEM_NAME", "Downloads a gem"
     method_option :path,
-              :aliases  => "-p",
-              :type     => :string,
-              :default  => nil,
-              :desc     => "Path where gem gonna be saved"
+                  :aliases  => "-p",
+                  :type     => :string,
+                  :default  => nil,
+                  :desc     => "Path where gem gonna be saved (default: ENV['HOME'])"
 
     def download(gem_name)
-      path ||= options[:path] || ENV['HOME']
       record = Gem.where(name: gem_name).first
-      record.action :download, path: path
 
-      Presentation::Download.new(success: true, path: path).show
-    rescue NoMethodError, Rudisco::Error => exception
+      if record
+        path = File.expand_path(options[:path] || ENV['HOME'])
+
+        record.action :download, path: path
+        Presentation::Download.new(success: true, path: path).show
+      else
+        raise GemNotFound, gem_name
+      end
+
+    rescue Rudisco::Error => exception
       Presentation::Download.new(success: false, exception: exception).show
     end
 
@@ -78,6 +84,9 @@ module CLI
     #   Presentation::Statistic.new(
     #     gem_count: gem_count, outdated_count: outdated_count).show
     # end
+
+    class GemNotFound < Error # no-doc
+      def initialize(name); super "Gem '#{name}' not found!" end; end
   end # class Application
 end # module CLI
 end # module Rudisco
