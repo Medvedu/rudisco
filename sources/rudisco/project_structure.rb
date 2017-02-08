@@ -7,6 +7,7 @@ module Rudisco
   require 'net/http'
   require 'uri'
   require 'json'
+  require 'tempfile'
 
   # === Dependencies from rubygems.org
 

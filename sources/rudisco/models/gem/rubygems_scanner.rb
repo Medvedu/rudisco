@@ -47,11 +47,12 @@ module Rudisco
     def _surface_scanning # no-doc
       rubygems =
         begin
-          path_to_tmp_file = File.join(__dir__, '../' * 4, 'tmp/gems.tmp')
-          system "gem list --remote > #{path_to_tmp_file}"
+          tmp_file = Tempfile.new 'gems.tmp'
+
+          system "gem list --remote > #{tmp_file.path}"
           rubygems = CSV.open path_to_tmp_file
           rubygems = rubygems.map { |r| r.join.delete('()').split }
-          File.unlink path_to_tmp_file
+          tmp_file.unlink
 
           rubygems
         end
