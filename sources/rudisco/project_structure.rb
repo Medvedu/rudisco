@@ -37,7 +37,7 @@ module Rudisco
   load files: %w(helpers sqlite)
 
   load folder: 'models/gem',
-       files: %w(scanner actions dataset_methods)
+       files: %w(rubygems_scanner actions dataset_methods)
 
   load folder: 'models',
        files: %w(gem)

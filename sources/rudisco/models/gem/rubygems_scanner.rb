@@ -1,7 +1,7 @@
 # encoding: utf-8
 # frozen_string_literal: true
 module Rudisco
-  module GemScanner # no-doc
+  module RubyGemsScanner # no-doc
     ##
     # Scans rubygems.org for new gems. Also marks gems as outdated when
     # new gem version is out.
@@ -105,8 +105,7 @@ module Rudisco
       bunch.count.times do |i|
         threads << Thread.new(bunch[i], callback) do |sub_array, callback_proc|
           sub_array.each_slice(20) do |gems|
-            rubygems_manage_corteges gems
-            db.transaction { gems.each &:save }
+            db.transaction { rubygems_manage_corteges gems }
             callback_proc.call gems.count unless callback_proc.nil?
           end
         end
@@ -176,18 +175,20 @@ module Rudisco
     # @param [Array<Rudisco::Gem>] corteges
 
     def rubygems_manage_corteges(corteges)
-      corteges.each do |gem|
-        response = send_request_to_rubygems gem[:name]
+      corteges.each do |cortege|
+        response = send_request_to_rubygems cortege[:name]
 
         if response.nil?
           next
         elsif response =~ /could not be found/
-          gem.destroy # gem was deleted from rubygems.org
+          cortege.destroy # gem was deleted from rubygems.org
         else
           data = JSON.parse response
-          update_cortege gem, data
+          update_cortege cortege, data
+
+          cortege.save
         end
       end
     end
-  end # module GemScanner
+  end # module RubyGemsScanner
 end # module Rudisco

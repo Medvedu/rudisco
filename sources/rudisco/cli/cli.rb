@@ -87,15 +87,19 @@ module CLI
 
     desc "update", "Updates database"
     def update
-      presentation = Presentation::Update.new
-      presentation.show
+      Rudisco::Gem.surface_scanning
+      outdated = Rudisco::Gem.where(need_update: true).count
+      cli_view = Presentation::Update.new(outdated: outdated)
 
-      Gem.deep_scanning do |updated|
-        presentation.callback(updated: updated)
+      summary = 0 and cli_view.show
+      if outdated > 0
+        Gem.deep_scanning do |updated|
+          summary += updated
+          cli_view.update(updated: summary)
+        end
+        cli_view.finished
       end
     end
-
-
 
     # desc "open", ""
     # def open
