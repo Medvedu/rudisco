@@ -83,6 +83,7 @@ Table _gems_ consist of next columns: _name, description, authors, version, lice
   $ rudisco clone GEM_NAME     # Clones gem sources from git
   $ rudisco download GEM_NAME  # Downloads a gem
   $ rudisco find PHRASE        # Searches phrase in gem name or description
+  $ rudisco open GEM_NAME      # Opens gem page on rubygems.org
   $ rudisco show GEM_NAME      # Shows detailed information about single gem
   $ rudisco update             # Updates database
 ```

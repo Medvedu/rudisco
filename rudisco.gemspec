@@ -1,12 +1,12 @@
 # encoding: utf-8
 Gem::Specification.new do |s|
   s.name          = 'rudisco'
-  s.version       = '0.9.12'
+  s.version       = '1.0.0'
   s.date          = '2017-02-05'
   s.authors       = ['Kuzichev Michael']
   s.license       = 'MIT'
   s.email         = 'kMedvedu@gmail.com'
-  s.summary       = 'Rubygems sqlite3 database (includes information about ~ 126000 gems). Table gems consist of next columns: name, description, authors, version, license, sha, source_code_url and more.'
+  s.summary       = 'Rubygems sqlite3 database (includes information about ~ 126000 gems). Table gems consist of next columns: name, description, authors, version, license, sha, source_code_url and more. Supports CLI.'
   s.homepage      = 'https://github.com/Medvedu/rudisco'
 
   s.files         = Dir['readme.md', 'license.md', 'Gemfile', 'Rakefile', 'bin/**/*', 'sources/**/*', 'rakefiles/**/*', 'docs/**/*']
