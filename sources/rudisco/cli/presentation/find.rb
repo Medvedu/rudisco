@@ -67,9 +67,9 @@ module CLI
     # @return [String]
 
     def clear_desc_helper(description)
-      tmp = description.dup
-      return "N/A" if tmp.nil? || tmp.empty?
+      return "N/A" if description.nil? || description.empty?
 
+      tmp = description.dup
       tmp = tmp.delete "#{1.chr}-#{31.chr}".split.join ' '
 
       return tmp

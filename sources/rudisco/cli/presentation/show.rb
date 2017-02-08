@@ -80,7 +80,7 @@ module CLI
       end # table
     end
 
-    def url_helper(url)
+    def url_helper(url) # no-doc
       if url.nil? || url.empty?
         return "no"
       else
