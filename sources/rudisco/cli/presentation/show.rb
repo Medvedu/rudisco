@@ -80,7 +80,7 @@ module CLI
       end # table
     end
 
-    def url_helper(url)
+    def url_helper(url) # no-doc
       if url.nil? || url.empty?
         return "no"
       else
@@ -88,7 +88,7 @@ module CLI
       end
     end
 
-    # @return Rudisco::Gem
+    # @return [Rudisco::Gem]
 
     attr_reader :record
   end # class Presentation::Show

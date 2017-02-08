@@ -30,7 +30,7 @@ module Rudisco
   # );
 
   class Gem < Sequel::Model
-    extend GemScanner
+    extend RubyGemsScanner
     plugin :gem_extended_dataset
 
     ##
@@ -77,6 +77,7 @@ module Rudisco
     #     :open_bug_tracker   @see GemActions#open_bug_tracker
     #     :open_sources       @see GemActions#open_sources
     #     :open_wiki          @see GemActions#open_wiki
+    #     :open_rubygems      @see GemActions#open_rubygmes
     #     :download           @see GemActions#download
     #     :git_clone          @see GemActions#git_clone
     #

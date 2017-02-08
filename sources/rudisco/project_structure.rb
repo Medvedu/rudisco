@@ -37,7 +37,7 @@ module Rudisco
   load files: %w(helpers sqlite)
 
   load folder: 'models/gem',
-       files: %w(scanner actions dataset_methods)
+       files: %w(rubygems_scanner actions dataset_methods)
 
   load folder: 'models',
        files: %w(gem)
@@ -48,7 +48,7 @@ module Rudisco
        files: %w(presentation)
 
   load folder: 'cli/presentation',
-       files: %w(find show statistic update download git_clone)
+       files: %w(find show update download git_clone open)
 
-  load files: %w(cli)
+  load files: %w(cli/cli) # cli/routes
 end # module Rudisco

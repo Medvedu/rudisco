@@ -50,7 +50,7 @@ module CLI
             column index
             column rec.name
             column source_code_helper(rec.source_code_url)
-            column clear_desc(rec.description)
+            column clear_desc_helper(rec.description)
             column rec.total_downloads
           end
         end
@@ -66,10 +66,10 @@ module CLI
     #
     # @return [String]
 
-    def clear_desc(description)
-      tmp = description.dup
-      return "N/A" if tmp.nil? || tmp.empty?
+    def clear_desc_helper(description)
+      return "N/A" if description.nil? || description.empty?
 
+      tmp = description.dup
       tmp = tmp.delete "#{1.chr}-#{31.chr}".split.join ' '
 
       return tmp
