@@ -88,7 +88,7 @@ module CLI
       end
     end
 
-    # @return Rudisco::Gem
+    # @return [Rudisco::Gem]
 
     attr_reader :record
   end # class Presentation::Show

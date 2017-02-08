@@ -73,6 +73,13 @@ module Rudisco
     end
 
     ##
+    # Opens in browser gem page on rubygems.org
+
+    def open_rubygems(params = {})
+      Helpers.open_in_browser gem.project_url
+    end
+
+    ##
     # Downloads gem.
     #
     # @param [Hash] params

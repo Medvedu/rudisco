@@ -101,9 +101,19 @@ module CLI
       end
     end
 
-    # desc "open", ""
-    # def open
-    # end
+    desc "open GEM_NAME", "Opens gem page on rubygems.org"
+    def open(gem_name)
+      record = Gem.where(name: gem_name).first
+
+      if record
+        record.action :open_rubygems
+      else
+        raise GemNotFound, gem_name
+      end
+
+    rescue Rudisco::Error => exception
+      Presentation::Open.new(exception: exception).show
+    end
 
     class GemNotFound < Error # no-doc
       def initialize(name); super "Gem '#{name}' not found!" end; end
