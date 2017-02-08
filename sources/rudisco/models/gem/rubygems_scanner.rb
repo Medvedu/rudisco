@@ -50,7 +50,7 @@ module Rudisco
           tmp_file = Tempfile.new 'gems.tmp'
 
           system "gem list --remote > #{tmp_file.path}"
-          rubygems = CSV.open path_to_tmp_file
+          rubygems = CSV.open tmp_file.path
           rubygems = rubygems.map { |r| r.join.delete('()').split }
           tmp_file.unlink
 
