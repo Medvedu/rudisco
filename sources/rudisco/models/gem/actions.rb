@@ -92,7 +92,7 @@ module Rudisco
     end
 
     ##
-    # Clones gem from git.
+    # Clones gem from git-source.
     #
     # @param [Hash] params
     # @option params [String] :path (ENV['HOME'])
