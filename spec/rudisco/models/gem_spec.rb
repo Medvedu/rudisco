@@ -35,6 +35,24 @@ module Rudisco
         expect{ sample.action :misspelled_action }
           .to raise_exception GemActions::Unknown
       end
+
+      it 'completes an action for single cortege' do
+        allow_any_instance_of(Rudisco::GemActions)
+          .to receive(:open_in_browser).and_throw(:method_called)
+
+        cortege = described_class.first
+        expect{cortege.action :open_in_browser}.to throw_symbol
+      end
+
+      it 'completes an action for each cortege in Gems#dataset' do
+        allow_any_instance_of(Rudisco::GemActions)
+          .to receive(:open_in_browser).and_throw(:method_called)
+
+        dataset = described_class.limit(3)
+        dataset.each do |cortege|
+          expect{cortege.action :open_in_browser}.to throw_symbol
+        end
+      end
     end # describe "#action"
   end # describe Gem
 end # module Rudisco
