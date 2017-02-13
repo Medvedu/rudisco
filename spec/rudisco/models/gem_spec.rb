@@ -9,7 +9,7 @@ module Rudisco
     end
 
     it 'works as Sequel ORM' do
-      expect(described_class.where {total_downloads > 10000000 }.count)
+      expect(described_class.where {total_downloads > 30 }.count)
         .to be > 0
     end
 

@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 module Rudisco
   path_to_database =
-    File.join(__dir__, '../../sources/database/rudisco.db')
+    ENV['RUDISCO_DB'] || File.join(__dir__, '../../sources/database/rudisco.db')
 
   Sequel.connect "sqlite://#{path_to_database}",
                  max_connections: 40,
