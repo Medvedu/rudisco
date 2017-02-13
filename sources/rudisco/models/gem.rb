@@ -8,23 +8,23 @@ module Rudisco
   # CREATE TABLE `gems` (
   # 	`id`	integer NOT NULL PRIMARY KEY AUTOINCREMENT,
   #
-  # 	`name`	      Text,
-  # 	`description`	Text,
-  # 	`authors`	    Text,
-  # 	`version`	    Text,
-  # 	`license`	    Text,
-  # 	`sha`	        Text,
+  # 	`name`        Text,
+  # 	`description` Text,
+  # 	`authors`     Text,
+  # 	`version`     Text,
+  # 	`license`     Text,
+  # 	`sha`         Text,
   #
-  # 	`source_code_url`	  Text,
-  # 	`project_url`	      Text,
-  # 	`gem_url`	          Text,
-  # 	`wiki_url`	        Text,
-  # 	`documentation_url`	Text,
-  # 	`mailing_list_url`	Text,
-  # 	`bug_tracker_url`	  Text,
+  # 	`source_code_url`   Text,
+  # 	`project_url`       Text,
+  # 	`gem_url`           Text,
+  # 	`wiki_url`          Text,
+  # 	`documentation_url` Text,
+  # 	`mailing_list_url`  Text,
+  # 	`bug_tracker_url`   Text,
   #
-  # 	`total_downloads`	  Integer,
-  # 	`version_downloads`	Integer,
+  # 	`total_downloads`   Integer,
+  # 	`version_downloads` Integer,
   #
   # 	`need_update`	Boolean DEFAULT (1)
   # );
