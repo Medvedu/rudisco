@@ -75,7 +75,7 @@ Table _gems_ consist of next columns: _name, description, authors, version, lice
 
 ## CLI
 
-![Alt text](./docs/images/image.jpg)
+![Alt text](./doc/images/image.jpg)
 
 ### commands list
 
