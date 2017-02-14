@@ -8,7 +8,7 @@ namespace 'development' do
     require 'sequel'
 
     ### CREATE DATABASE
-    path_to_db = File.join(__dir__, '../../sources/database/rudisco.db')
+    path_to_db = File.join(__dir__, '../../lib/database/rudisco.db')
     File.delete path_to_db if File.exist? path_to_db
     database = Sequel.sqlite(path_to_db)
 

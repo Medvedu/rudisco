@@ -16,7 +16,6 @@ Gem::Specification.new do |s|
   s.executables << 'rudisco'
 
   s.test_files = Dir['spec/**/*.rb']
-  s.require_paths = ['sources']
 
   s.required_ruby_version = '>= 2.1.10'
 

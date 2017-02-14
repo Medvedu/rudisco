@@ -2,7 +2,7 @@
 namespace 'Rudisco' do
   desc "(long-term task) Starts multithread Rudisco::Gem table update"
   task 'update' do
-    require File.join(__dir__, '..', 'sources', 'rudisco.rb')
+    require File.join(__dir__, '..', 'lib', 'rudisco.rb')
 
     puts "task Rudisco:update launched!"
 
