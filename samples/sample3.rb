@@ -1,6 +1,6 @@
 # encoding: utf-8
 # frozen_string_literal: true
-require_relative '../sources/rudisco'
+require_relative '../lib/rudisco'
 
 path_to_load = File.join(__dir__, '..', 'tmp')
 

@@ -1,6 +1,6 @@
 # encoding: utf-8
 # frozen_string_literal: true
-require_relative '../sources/rudisco'
+require_relative '../lib/rudisco'
 
 phrase = 'rails'
 gems = Rudisco::Gem.find_phrase(phrase)
