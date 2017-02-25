@@ -8,6 +8,7 @@ module Rudisco
   require 'uri'
   require 'json'
   require 'tempfile'
+  require 'openssl'
 
   # === Dependencies from rubygems.org
 

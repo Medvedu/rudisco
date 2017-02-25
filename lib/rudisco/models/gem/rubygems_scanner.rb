@@ -128,8 +128,8 @@ module Rudisco
           url = URI.parse "https://rubygems.org/api/v1/gems/#{name}.json"
           response = Net::HTTP.get_response(url)
 
-          return response.body unless response.body.empty?
-        rescue Errno::ECONNRESET
+          return response.body if response.is_a? Net::HTTPSuccess
+        rescue Errno::ECONNRESET, Net::OpenTimeout
           next
         end
       end
