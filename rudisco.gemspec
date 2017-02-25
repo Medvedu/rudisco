@@ -1,7 +1,7 @@
 # encoding: utf-8
 Gem::Specification.new do |s|
   s.name          = 'rudisco'
-  s.version       = '1.0.1'
+  s.version       = '1.0.2'
   s.date          = '2017-02-05'
   s.authors       = ['Kuzichev Michael']
   s.license       = 'MIT'
