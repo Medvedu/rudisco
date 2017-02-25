@@ -90,8 +90,7 @@ Table _gems_ consist of next columns: _name, description, authors, version, lice
 
 ## Todo
 
-  * Integrate with Github for better search results.
-  * Add CLI open (opens any url associated with gem in browser) & CLI statistic (database&program statistic) commands.
+  * CLI statistic (database&program statistic) commands.
   * Tests coverage.
 
 ## Dependencies
